@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yijie.data.client.dao.UserMapper">
+
+	<!-- 条件拼接 -->
+	<sql id="user_where">
+		<where>
+			<if test="id != null and id != ''">
+				and id = #{id}
+			</if>
+			<if test="uuid != null and uuid != ''">
+				and uuid = #{uuid}
+			</if>
+			<if test="openid != null and openid != ''">
+				and openid = #{openid}
+			</if>
+			<if test="QQuid != null and QQuid != ''">
+				and QQuid = #{QQuid}
+			</if>
+			<if test="num != null and num != ''">
+				and num = #{num}
+			</if>
+			<if test="level != null and level != ''">
+				and level = #{level}
+			</if>
+			<if test="audit != null and audit != ''">
+				and audit = #{audit}
+			</if>
+		</where>
+	</sql>
+
+
+	<!-- 分页拼接 -->
+	<sql id="limit_cond">
+		<if test="begin != null and begin != ''">
+			limit #{begin},20
+		</if>
+	</sql>
+
+	<insert id="userInsert" parameterType="com.yijie.data.client.model.User">
+		insert into
+		yl_user(uuid,num,password,name,balance,level,license,audit)
+		value(#{uuid},#{num},#{password},#{name},0,#{level},#{license},#{audit})
+	</insert>
+
+	<select id="userSelect" parameterType="com.yijie.data.client.model.User"
+		resultType="com.yijie.data.client.model.User">
+		select * from yl_user
+		<include refid="user_where"></include>
+		<include refid="limit_cond"></include>
+	</select>
+
+	<update id="userUpdate" parameterType="com.yijie.data.client.model.User">
+		update yl_user
+		<trim prefix="set" suffixOverrides=",">
+			<if test="password != null and password != ''">password = #{password},</if>
+			<if test="name != null and name != ''">name = #{name},</if>
+			<if test="balance != null and balance != ''">balance = #{balance},</if>
+			<if test="level != null and level != ''">level = #{level},</if>
+			<if test="license != null and license != ''">license = #{license},</if>
+			<if test="audit != null and audit != ''">audit = #{audit},</if>
+		</trim>
+		<include refid="user_where"></include>
+	</update>
+
+	<delete id="userDelete" parameterType="com.yijie.data.client.model.User">
+		delete from yl_user
+		<include refid="user_where"></include>
+	</delete>
+
+</mapper>

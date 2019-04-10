@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yijie.data.client.dao.ProjectDesignMapper">
+
+<!-- 条件拼接 -->
+<sql id="design_where">
+        <where>
+        <if test="id != null and id != ''">
+            and id = #{id}
+        </if>
+        <if test="project_id != null and project_id != ''">
+            and project_id = #{project_id}
+        </if>
+        <if test="filename != null and filename != ''">
+            and filename = #{filename}
+        </if>
+        </where>
+    </sql>
+    
+    <insert id="projectDesignInsert" parameterType="com.yijie.data.client.model.ProjectDesign">
+        insert into yl_project_design(project_id,filename,design) value(#{project_id},#{filename},#{design})
+    </insert>
+    
+    <select id="projectDesignSelect" parameterType="com.yijie.data.client.model.ProjectDesign" resultType="com.yijie.data.client.model.ProjectDesign">
+        select * from yl_project_design
+        <include refid="design_where"></include>
+    </select>
+    
+    <update id="projectDesignUpdate" parameterType="com.yijie.data.client.model.ProjectDesign">
+        update yl_project_design
+    <trim prefix="set" suffixOverrides=",">
+        <if test="filename != null and filename != ''">filename = #{filename},</if>
+        <if test="design != null and design != ''">design = #{design},</if>
+    </trim>
+    <include refid="design_where"></include>
+    </update>
+    
+    <delete id="projectDesignDelete" parameterType="com.yijie.data.client.model.ProjectDesign">
+        delete from yl_project_design
+        <include refid="design_where"></include>
+    </delete>
+
+</mapper>

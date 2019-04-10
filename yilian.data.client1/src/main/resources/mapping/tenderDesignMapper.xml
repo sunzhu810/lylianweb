@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yijie.data.client.dao.TenderDesignMapper">
+
+<!-- 条件拼接 -->
+<sql id="design_where">
+        <where>
+        <if test="id != null and id != ''">
+            and id = #{id}
+        </if>
+        <if test="tender_id != null and tender_id != ''">
+            and tender_id = #{tender_id}
+        </if>
+        <if test="filename != null and filename != ''">
+            and filename = #{filename}
+        </if>
+        </where>
+    </sql>
+    
+    <insert id="tenderDesignInsert" parameterType="com.yijie.data.client.model.TenderDesign">
+        insert into yl_tender_design(tender_id,filename,design) value(#{tender_id},#{filename},#{design})
+    </insert>
+    
+    <select id="tenderDesignSelect" parameterType="com.yijie.data.client.model.TenderDesign" resultType="com.yijie.data.client.model.TenderDesign">
+        select * from yl_tender_design
+        <include refid="design_where"></include>
+    </select>
+    
+    <update id="tenderDesignUpdate" parameterType="com.yijie.data.client.model.TenderDesign">
+        update yl_tender_design
+    <trim prefix="set" suffixOverrides=",">
+        <if test="filename != null and filename != ''">filename = #{filename},</if>
+        <if test="design != null and design != ''">design = #{design},</if>
+    </trim>
+    <include refid="design_where"></include>
+    </update>
+    
+    <delete id="tenderDesignDelete" parameterType="com.yijie.data.client.model.TenderDesign">
+        delete from yl_tender_design
+        <include refid="design_where"></include>
+    </delete>
+
+</mapper>

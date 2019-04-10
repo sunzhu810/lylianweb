@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yijie.data.client.dao.TenderMapper">
+
+<!-- 关联返回map定义 -->
+<resultMap type="com.yijie.data.client.model.Tender" id="tenderMap">  
+    <id property="id" column="id" />  
+    <result property="uuid" column="uuid" />
+    <result property="user_uuid" column="user_uuid" />
+    <result property="title" column="title" />
+    <result property="message" column="message" />
+    <result property="area" column="area" />
+    <result property="days" column="days" />
+    <result property="min_budget" column="min_budget" />
+    <result property="max_budget" column="max_budget" />
+    <result property="phone" column="phone" />
+    <result property="OICQ" column="OICQ" />
+    <result property="type" column="type" />
+    <result property="license" column="license" />
+    <result property="audit" column="audit" />
+    <result property="end_time" column="end_time" />
+    <association property="designs" column="id"  
+        select="getDesign" /> 
+</resultMap>
+
+<!-- 关联查询对应信息 -->
+<select id="getDesign" parameterType="int"  resultType="com.yijie.data.client.model.TenderDesign">  
+        SELECT * FROM yl_tender_design WHERE tender_id=#{id}
+</select>
+    
+    
+
+<!-- 条件拼接 -->
+<sql id="tender_where">
+    <where>
+        <if test="id != null and id != ''">
+            and id = #{id}
+        </if>
+        <if test="uuid != null and uuid != ''">
+            and uuid = #{uuid}
+        </if>
+        <if test="user_uuid != null and user_uuid != ''">
+            and user_uuid = #{user_uuid}
+        </if>
+        <if test="title != null and title != ''">
+            and title like %#{title}%
+        </if>
+        <if test="area != null and area != ''">
+            and area like %#{area}%
+        </if>
+        <if test="min_budget != null and min_budget != ''">
+            and min_budget &gt;= #{min_budget}
+        </if>
+        <if test="max_budget != null and max_budget != ''">
+            and max_budget &lt;= #{max_budget}
+        </if>
+        <if test="audit != null and audit != ''">
+            and audit = #{audit}
+        </if>
+    </where>
+</sql>
+    
+    
+<!-- 分页拼接 -->
+<sql id="limit_cond">
+    <if test="begin != null and begin != ''">
+            limit #{begin},20
+    </if>
+</sql>
+    
+    <insert id="tenderInsert" parameterType="com.yijie.data.client.model.Tender">
+        insert into yl_tender(uuid,user_uuid,title,message,area,days,min_budget,max_budget,phone,OICQ,type,license,audit,end_time) value(#{uuid},#{user_uuid},#{title},#{message},#{area},#{days},#{min_budget},#{max_budget},#{phone},#{OICQ},#{type},#{license},0,#{end_time})
+    </insert>
+    
+    <select id="tenderSelect" parameterType="com.yijie.data.client.model.Tender" resultMap="tenderMap">
+        select * from yl_tender
+        <include refid="tender_where"></include>
+        <include refid="limit_cond"></include>
+    </select>
+    
+    <update id="tenderUpdate" parameterType="com.yijie.data.client.model.Tender">
+        update yl_tender
+    <trim prefix="set" suffixOverrides=",">
+        <if test="title != null and title != ''">title = #{title},</if>
+        <if test="message != null and message != ''">message = #{message},</if>
+        <if test="area != null and area != ''">area = #{area},</if>
+        <if test="days != null and days != ''">days = #{days},</if>
+        <if test="phone != null and phone != ''">phone = #{phone},</if>
+        <if test="OICQ != null and OICQ != ''">OICQ = #{OICQ},</if>
+        <if test="audit != null and audit != ''">audit = #{audit},</if>
+    </trim>
+    <include refid="tender_where"></include>
+    </update>
+    
+    <delete id="tenderDelete" parameterType="com.yijie.data.client.model.Tender">
+        delete from yl_tender
+        <include refid="tender_where"></include>
+    </delete>
+
+</mapper>
