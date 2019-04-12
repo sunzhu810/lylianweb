@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yijie.data.client.model.User;
 import com.yijie.data.client.service.UserDaoService;
 
+/**
+ * @描述 用户信息数据操作
+ * @author Lucifer
+ *
+ */
 @RestController
 @RequestMapping("/user")
 public class UserDaoController {
@@ -17,18 +22,34 @@ public class UserDaoController {
 	@Autowired
 	private UserDaoService userDaoService;
 	
+	// 用户登录
 	@RequestMapping("/userLogin")
 	public User userLogin(@RequestBody User user){
-		System.err.println(user);
-		User u = userDaoService.userLogin(user);
-		System.err.println(u);
-		return u;
+		return userDaoService.userLogin(user);
 	}
-	@RequestMapping("/")
-	public List query(){
-		List u = userDaoService.queryUser();
-		System.err.println(u.size());
-		return u;
+	
+	// 用户列表
+	@RequestMapping("/userTable")
+	public List<User> userTable(@RequestBody User user){
+		return userDaoService.userTable(user);
+	}
+	
+	// 用户注册
+	@RequestMapping("/userRegist")
+	public Integer userRegist(@RequestBody User user){
+		return userDaoService.userRegist(user);
+	}
+	
+	// 用户信息更新
+	@RequestMapping("/userUpdate")
+	public Integer userUpdate(@RequestBody User user){
+		return userDaoService.userUpdate(user);
+	}
+	
+	// 用户注销
+	@RequestMapping("/userDelete")
+	public Integer userDelete(@RequestBody User user){
+		return userDaoService.userDelete(user);
 	}
 	
 }

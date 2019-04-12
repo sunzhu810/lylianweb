@@ -21,6 +21,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <result property="type" column="type" />
     <result property="price" column="price" />
     <result property="audit" column="audit" />
+    <result property="click_count" column="click_count" />
+    <result property="cha_count" column="cha_count" />
+    <result property="date" column="date" />
     <association property="designs" column="id"  
         select="getDesign" /> 
 </resultMap>
@@ -59,6 +62,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <if test="audit != null and audit != ''">
             and audit = #{audit}
         </if>
+        
+        <if test="click_count != null and click_count != ''">
+            and click_count = #{click_count}
+        </if>
+        <if test="cha_count != null and cha_count != ''">
+            and cha_count = #{cha_count}
+        </if>
+        <if test="date != null and date != ''">
+            and date = #{date}
+        </if>
     </where>
 </sql>
     
@@ -71,7 +84,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     
     <insert id="projectInsert" parameterType="com.yijie.data.client.model.Projects">
-        insert into yl_project(uuid,user_uuid,title,message,area,days,min_budget,max_budget,phone,OICQ,type,audit) value(#{uuid},#{user_uuid},#{title},#{message},#{area},#{days},#{min_budget},#{max_budget},#{phone},#{OICQ},#{type},0)
+        insert into yl_project(uuid,user_uuid,title,message,area,days,min_budget,max_budget,phone,OICQ,type,audit,click_count,date) value(#{uuid},#{user_uuid},#{title},#{message},#{area},#{days},#{min_budget},#{max_budget},#{phone},#{OICQ},#{type},#{click_count},#{cha_count},#{date},0)
     </insert>
     
     <select id="projectSelect" parameterType="com.yijie.data.client.model.Projects" resultMap="projectMap">
@@ -90,8 +103,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <if test="phone != null and phone != ''">phone = #{phone},</if>
         <if test="OICQ != null and OICQ != ''">OICQ = #{OICQ},</if>
         <if test="audit != null and audit != ''">audit = #{audit},</if>
+        <if test="click_count != null and click_count != ''">click_count = #{click_count},</if>
+         <if test="cha_count != null and click_count != ''">cha_count = #{cha_count},</if>
+          <if test="date != null and date != ''">date = #{date},</if>
     </trim>
-    <include refid="project_where"></include>
+     <where>
+     <if test="uuid != null and uuid != ''">
+            and uuid = #{uuid}
+        </if>
+     </where>
     </update>
     
     <delete id="projectDelete" parameterType="com.yijie.data.client.model.Projects">

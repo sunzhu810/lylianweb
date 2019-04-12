@@ -24,19 +24,21 @@ public class UserHandleServiceImpl implements UserHandleService {
 	@Override
 	public Integer userRegist(User user) {
 		// TODO Auto-generated method stub
-		return null;
+		return userDao.userRegist(user);
 	}
 
 	@Override
-	public Integer userPhoneExist(String num) {
+	public User userPhoneExist(String num) {
 		// TODO Auto-generated method stub
-		return null;
+		User user=new User();
+		user.setNum(num);
+	User user1	=userDao.userLogin(user);
+		return user1;
 	}
 
 	@Override
 	public Integer userUpdate(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		return userDao.userUpdate(user);
 	}
 
 }

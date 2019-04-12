@@ -47,9 +47,10 @@ public class ProjectController {
 	 */
 	@RequestMapping("/projectTable")
 	@ResponseBody
-	public Map<String,Object> projectTable(@RequestBody Projects projects){
+	public List<Projects>  projectTable(@RequestBody Projects projects){
+		System.out.println(projects);
 		Map<String,Object> result = new HashMap<String, Object>();
-		try {
+		/*try {
 			List<Projects> projectTable = projectService.projectTable(projects);
 			result.put("projectTable", projectTable);
 			result.put("code", 1);
@@ -59,7 +60,9 @@ public class ProjectController {
 			result.put("code", 0);
 			result.put("msg", "系统出错");
 			return result;
-		}
+		}*/
+		List<Projects> projectTable = projectService.projectTable(projects);
+return projectTable;
 	}
 	
 	/**
@@ -95,8 +98,8 @@ public class ProjectController {
 	public Map<String,Object> projectUpdate(@RequestBody Projects projects){
 		Map<String,Object> result = new HashMap<String, Object>();
 		try {
-			Projects project = projectService.projectUpdate(projects);
-			result.put("projectMessage", project);
+			Integer code = projectService.projectUpdate(projects);
+			result.put("projectMessage", code);
 			result.put("code", 1);
 			return result;
 		} catch (Exception e) {

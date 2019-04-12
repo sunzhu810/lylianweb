@@ -1,5 +1,8 @@
 package com.yijie.yilian.client.service;
 
+import java.util.List;
+
+import com.yijie.yilian.client.model.Projects;
 import com.yijie.yilian.client.model.User;
 
 /**
@@ -16,10 +19,11 @@ public interface UserHandleService {
 	public Integer userRegist(User user);
 	
 	//验证用户电话号码是否已使用
-	public Integer userPhoneExist(String num);
+	public User userPhoneExist(String num);
 	
 	//用户信息修改
 	public Integer userUpdate(User user);
+	 
 	
 	
 

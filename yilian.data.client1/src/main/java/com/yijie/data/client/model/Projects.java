@@ -50,7 +50,10 @@ public class Projects {
 
 	// 是否通过审核（1.通过，0.未通过，2.审核中）
 	private Integer audit;
-
+	//项目点击量
+	private Integer click_count;
+	//项目交换
+	private Integer cha_count;
 	// 项目对应附件
 	private List<ProjectDesign> designs;
 	
@@ -199,12 +202,12 @@ public class Projects {
 		return "Projects [id=" + id + ", uuid=" + uuid + ", user_uuid=" + user_uuid + ", title=" + title + ", message="
 				+ message + ", area=" + area + ", days=" + days + ", min_budget=" + min_budget + ", max_budget="
 				+ max_budget + ", phone=" + phone + ", OICQ=" + OICQ + ", type=" + type + ", price=" + price
-				+ ", audit=" + audit + ", designs=" + designs + ", begin=" + begin + "]";
+				+ ", audit=" + audit + ",click_count=" + click_count + ",cha_count="+cha_count+",designs=" + designs + ", begin=" + begin + "]";
 	}
 
 	public Projects(Integer id, String uuid, String user_uuid, String title, String message, String area, Integer days,
-			Double min_budget, Double max_budget, String phone, String oICQ, String type, Integer price, Integer audit,
-			List<ProjectDesign> designs, Integer begin) {
+			Double min_budget, Double max_budget, String phone, String oICQ, String type, Integer price, Integer audit,Integer cha_count,
+			 Integer click_count,List<ProjectDesign> designs, Integer begin) {
 		super();
 		this.id = id;
 		this.uuid = uuid;
@@ -220,12 +223,30 @@ public class Projects {
 		this.type = type;
 		this.price = price;
 		this.audit = audit;
+		this.click_count=click_count;
+		this.cha_count = cha_count;
 		this.designs = designs;
 		if(begin != null){
 			this.begin = ((begin-1)*20)+1;
 		}else{
 			this.begin = begin;
 		}
+	}
+
+	public Integer getClick_count() {
+		return click_count;
+	}
+
+	public void setClick_count(Integer click_count) {
+		this.click_count = click_count;
+	}
+
+	public Integer getCha_count() {
+		return cha_count;
+	}
+
+	public void setCha_count(Integer cha_count) {
+		this.cha_count = cha_count;
 	}
 
 }

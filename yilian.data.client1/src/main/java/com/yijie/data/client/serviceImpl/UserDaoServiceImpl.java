@@ -13,7 +13,7 @@ import com.yijie.data.client.service.UserDaoService;
 public class UserDaoServiceImpl implements UserDaoService {
 	
 	@Autowired
-	private  UserMapper userMapper;
+	private UserMapper userMapper;
 
 	@Override
 	public User userLogin(User user) {
@@ -31,11 +31,47 @@ public class UserDaoServiceImpl implements UserDaoService {
 	}
 
 	@Override
-	public List queryUser() {
-		User user=new User();
-		user.setId(1);
-		return userMapper.userSelect(user);
+	public Integer userRegist(User user) {
+		try {
+			userMapper.userInsert(user);
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
 	}
-	
+
+	@Override
+	public Integer userUpdate(User user) {
+		try {
+			userMapper.userUpdate(user);
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+
+	@Override
+	public Integer userDelete(User user) {
+		try {
+			userMapper.userDelete(user);
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+
+	@Override
+	public List<User> userTable(User user) {
+		try {
+			List<User> list = userMapper.userSelect(user);
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 }

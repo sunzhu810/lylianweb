@@ -2,43 +2,45 @@ package com.yijie.yilian.client.serviceImpl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yijie.yilian.client.daoClient.ProjectDao;
 import com.yijie.yilian.client.model.ProjectDesign;
 import com.yijie.yilian.client.model.Projects;
 import com.yijie.yilian.client.service.ProjectService;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
-
+    @Autowired
+    ProjectDao  projectDao;
 	@Override
 	public Integer projectBuild(Projects projects) {
 		// TODO Auto-generated method stub
-		return null;
+		return projectDao.projectBuild(projects);
 	}
 
 	@Override
 	public List<Projects> projectTable(Projects projects) {
 		// TODO Auto-generated method stub
-		return null;
+		return projectDao.projectTable(projects);
 	}
 
 	@Override
 	public Projects projectMessage(Projects projects) {
-		// TODO Auto-generated method stub
-		return null;
+		return projectDao.projectMessage(projects);
 	}
 
 	@Override
-	public Projects projectUpdate(Projects projects) {
+	public Integer projectUpdate(Projects projects) {
 		// TODO Auto-generated method stub
-		return null;
+		return projectDao.projectUpdate(projects);
 	}
 
 	@Override
 	public Integer projectDelete(Projects projects) {
 		// TODO Auto-generated method stub
-		return null;
+		return projectDao.projectDelete(projects);
 	}
 
 	@Override

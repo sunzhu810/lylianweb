@@ -1,6 +1,7 @@
 package com.yijie.yilian.client.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,7 @@ public class UserHandleController {
 	 * @return
 	 */
 	@RequestMapping("/userRegistForOwn")
-	@ResponseBody
+	
 	public Map<String,Object> userRegistForOwn(@RequestBody User user){
 		Map<String,Object> result = new HashMap<String,Object>();
 		//个人账户默认审核通过
@@ -70,13 +71,13 @@ public class UserHandleController {
 	 * @return
 	 */
 	@RequestMapping("/userRegistForComplane")
-	@ResponseBody
+	
 	public Map<String,Object> userRegistForComplane(@RequestBody User user){
 		Map<String,Object> result = new HashMap<String,Object>();
 		//企业账户默认审核未通过
 		user.setAudit(0);
 		Integer code = userHandleService.userRegist(user);
-		result.put("code", code);
+		result.put("co-ide", code);
 		return result;
 	}
 	
@@ -84,15 +85,22 @@ public class UserHandleController {
 	/**
 	 * @描述 验证用户账号是否已注册（如果已存在返回错误编码0，不存在返回成功编码1）
 	 * @param num
-	 * @return 
+	 * @return 0为存在1不存在
 	 */
 	@RequestMapping("/userPhoneExist")
 	@ResponseBody
 	public Map<String,Object> userPhoneExist(@RequestBody String num){
 		Map<String,Object> result = new HashMap<String,Object>();
-		Integer code = userHandleService.userPhoneExist(num);
-		result.put("code", code);
+		User user = userHandleService.userPhoneExist(num);
+		if(user==null) {
+		result.put("code", 1);
+		
+		}else {
+			result.put("code", 0);
+			result.put("msg", "号码已经存在");
+		}
 		return result;
+	
 	}
-
-}
+	
+	}

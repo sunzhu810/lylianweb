@@ -136,7 +136,7 @@ public class User {
 	}
 
 	public void setBegin(Integer begin) {
-		this.begin = ((begin-1)*20)+1;
+		this.begin = begin;
 	}
 
 	@Override
@@ -165,7 +165,7 @@ public class User {
 		this.level = level;
 		this.license = license;
 		this.audit = audit;
-		this.begin = ((begin-1)*20)+1;
+		this.begin = begin;
 	}
 	
 	

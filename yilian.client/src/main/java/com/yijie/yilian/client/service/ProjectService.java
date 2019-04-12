@@ -22,7 +22,7 @@ public interface ProjectService {
 	public Projects projectMessage(Projects projects);
 
 	// 项目信息更新
-	public Projects projectUpdate(Projects projects);
+	public Integer projectUpdate(Projects projects);
 
 	// 删除项目
 	public Integer projectDelete(Projects projects);

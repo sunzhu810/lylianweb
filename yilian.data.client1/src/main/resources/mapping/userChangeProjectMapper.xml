@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yijie.data.client.dao.UserChangeProjectMapper">
+
+<!-- 条件拼接 -->
+<sql id="project_where">
+    <where>
+        <if test="id != null and id != ''">
+            and id = #{id}
+        </if>
+        <if test="pro_uuid != null and pro_uuid != ''">
+            and pro_uuid = #{pro_uuid}
+        </if>
+        <if test="user_uuid != null and user_uuid != ''">
+            and user_uuid = #{user_uuid}
+        </if>
+        <if test="title != null and title != ''">
+            and title like %#{title}%
+        </if>
+    </where>
+</sql>
+    
+<!-- 分页拼接 -->
+<sql id="limit_cond">
+    <if test="begin != null and begin != ''">
+            limit #{begin},20
+    </if>
+</sql>
+    
+    
+    <insert id="projectInsert" parameterType="com.yijie.data.client.model.UserChangeProject">
+        insert into yl_userChePro(pro_uuid,user_uuid,title) value(#{pro_uuid},#{user_uuid},#{title})
+    </insert>
+    
+    <select id="projectSelect" parameterType="com.yijie.data.client.model.UserChangeProject" resultType="com.yijie.data.client.model.UserChangeProject">
+        select * from yl_userChePro
+        <include refid="project_where"></include>
+        <include refid="limit_cond"></include>
+    </select>
+    
+    <delete id="projectDelete" parameterType="com.yijie.data.client.model.UserChangeProject">
+        delete from yl_userChePro
+        <include refid="project_where"></include>
+    </delete>
+
+</mapper>
