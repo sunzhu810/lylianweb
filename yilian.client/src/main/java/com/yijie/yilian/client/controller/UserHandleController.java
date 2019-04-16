@@ -43,6 +43,7 @@ public class UserHandleController {
 			msg = "审核中！";
 		}else{
 			result.put("code", 1);
+			msg = "登录成功！";
 		}
 		result.put("user", u);
 		result.put("msg", msg);

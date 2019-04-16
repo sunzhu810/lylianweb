@@ -14,7 +14,7 @@ import com.yijie.yilian.client.service.CityDataService;
  * @author Lucifer
  *
  */
-@RestController
+@RestController  
 @RequestMapping("/city")
 public class CityListController {
 	

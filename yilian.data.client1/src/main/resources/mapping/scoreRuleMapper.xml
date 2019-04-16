@@ -36,12 +36,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <update id="scoreRuleUpdate" parameterType="com.yijie.data.client.model.ScoreRule">
         update yl_score_rule
-    <trim prefix="set" suffixOverrides=",">
-       
-        <if test="min_budget != null and min_budget != ''">min_budget = #{min_budget},</if>
-    <if test="max_budget != null and max_budget != ''">max_budget = #{max_budget},</if>
-        <if test="score_budget != null and score_budget != ''">score_budget = #{score_budget},</if>
-    </trim>
+    	<trim prefix="set" suffixOverrides=",">
+       	 <if test="min_budget != null and min_budget != ''">min_budget = #{min_budget},</if>
+   		 <if test="max_budget != null and max_budget != ''">max_budget = #{max_budget},</if>
+         <if test="score_budget != null and score_budget != ''">score_budget = #{score_budget},</if>
+    	</trim>
     <where>
         <if test="id != null and id != ''">
             and id = #{id}
