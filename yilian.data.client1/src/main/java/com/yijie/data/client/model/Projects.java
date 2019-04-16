@@ -60,7 +60,10 @@ public class Projects {
 	
 	// 分页数据（初始条数）
 	private Integer begin;
-private Date date;
+	
+	//提交时间
+	private Date date;
+
 	public Integer getId() {
 		return id;
 	}
@@ -146,7 +149,7 @@ private Date date;
 	}
 
 	public void setOICQ(String oICQ) {
-		this.OICQ = oICQ;
+		OICQ = oICQ;
 	}
 
 	public String getType() {
@@ -173,62 +176,6 @@ private Date date;
 		this.audit = audit;
 	}
 
-	public List<ProjectDesign> getDesigns() {
-		return designs;
-	}
-
-	public void setDesigns(List<ProjectDesign> designs) {
-		this.designs = designs;
-	}
-
-	public Integer getBegin() {
-		return begin;
-	}
-
-	public void setBegin(Integer begin) {
-		
-			this.begin = begin;
-		
-	}
-
-	public Projects() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public String toString() {
-		return "Projects [id=" + id + ", uuid=" + uuid + ", user_uuid=" + user_uuid + ", title=" + title + ", message="
-				+ message + ", area=" + area + ", days=" + days + ", min_budget=" + min_budget + ", max_budget="
-				+ max_budget + ", phone=" + phone + ", OICQ=" + OICQ + ", type=" + type + ", price=" + price
-				+ ", audit=" + audit+ ", date=" + date + ",click_count=" + click_count + ",cha_count="+cha_count+",designs=" + designs + ", begin=" + begin + "]";
-	}
-
-	public Projects(Integer id, String uuid, String user_uuid, String title, String message, String area, Integer days,
-			Double min_budget, Double max_budget, String phone, String oICQ, String type, Integer price, Integer audit,Integer cha_count,
-			Date date, Integer click_count,List<ProjectDesign> designs, Integer begin) {
-		super();
-		this.id = id;
-		this.uuid = uuid;
-		this.user_uuid = user_uuid;
-		this.title = title;
-		this.message = message;
-		this.area = area;
-		this.days = days;
-		this.min_budget = min_budget;
-		this.max_budget = max_budget;
-		this.phone = phone;
-		this.OICQ = oICQ;
-		this.type = type;
-		this.price = price;
-		this.audit = audit;
-		this.click_count=click_count;
-		this.cha_count = cha_count;
-		this.designs = designs;
-		this.date =date;
-		this.begin = begin;
-	}
-
 	public Integer getClick_count() {
 		return click_count;
 	}
@@ -245,6 +192,22 @@ private Date date;
 		this.cha_count = cha_count;
 	}
 
+	public List<ProjectDesign> getDesigns() {
+		return designs;
+	}
+
+	public void setDesigns(List<ProjectDesign> designs) {
+		this.designs = designs;
+	}
+
+	public Integer getBegin() {
+		return begin;
+	}
+
+	public void setBegin(Integer begin) {
+		this.begin = begin;
+	}
+
 	public Date getDate() {
 		return date;
 	}
@@ -253,4 +216,43 @@ private Date date;
 		this.date = date;
 	}
 
-}
+	@Override
+	public String toString() {
+		return "Projects [id=" + id + ", uuid=" + uuid + ", user_uuid=" + user_uuid + ", title=" + title + ", message="
+				+ message + ", area=" + area + ", days=" + days + ", min_budget=" + min_budget + ", max_budget="
+				+ max_budget + ", phone=" + phone + ", OICQ=" + OICQ + ", type=" + type + ", price=" + price
+				+ ", audit=" + audit + ", click_count=" + click_count + ", cha_count=" + cha_count + ", designs="
+				+ designs + ", begin=" + begin + ", date=" + date + "]";
+	}
+
+	public Projects() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Projects(Integer id, String uuid, String user_uuid, String title, String message, String area, Integer days,
+			Double min_budget, Double max_budget, String phone, String oICQ, String type, Integer price, Integer audit,
+			Integer click_count, Integer cha_count, List<ProjectDesign> designs, Integer begin, Date date) {
+		super();
+		this.id = id;
+		this.uuid = uuid;
+		this.user_uuid = user_uuid;
+		this.title = title;
+		this.message = message;
+		this.area = area;
+		this.days = days;
+		this.min_budget = min_budget;
+		this.max_budget = max_budget;
+		this.phone = phone;
+		OICQ = oICQ;
+		this.type = type;
+		this.price = price;
+		this.audit = audit;
+		this.click_count = click_count;
+		this.cha_count = cha_count;
+		this.designs = designs;
+		this.begin = begin;
+		this.date = date;
+	
+
+}}

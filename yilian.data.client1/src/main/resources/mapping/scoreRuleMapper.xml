@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8"?>
+
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -25,36 +29,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </if>
         </where>
     </sql>
-       
-<!-- 分页拼接 -->
-<sql id="limit_cond">
-    <if test="begin != null and begin != ''">
-            limit #{begin},12
-    </if>
-</sql>
+    
     <insert id="scoreRuleInsert" parameterType="com.yijie.data.client.model.ScoreRule">
         insert into yl_score_rule(uuid,min_budget,max_budget,score_budget) value(#{uuid},#{min_budget},#{max_budget},#{score_budget})
     </insert>
     <select id="scoreRuleSelect" parameterType="com.yijie.data.client.model.ScoreRule" resultType="com.yijie.data.client.model.ScoreRule">
         select * from yl_score_rule
      <include refid="rule_where"></include>
-     <include refid="limit_cond"></include>
-
-     
-     
-     
-     
-     
     </select>
     
     <update id="scoreRuleUpdate" parameterType="com.yijie.data.client.model.ScoreRule">
         update yl_score_rule
-    <trim prefix="set" suffixOverrides=",">
-       
-        <if test="min_budget != null and min_budget != ''">min_budget = #{min_budget},</if>
-    <if test="max_budget != null and max_budget != ''">max_budget = #{max_budget},</if>
-        <if test="score_budget != null and score_budget != ''">score_budget = #{score_budget},</if>
-    </trim>
+    	<trim prefix="set" suffixOverrides=",">
+       	 <if test="min_budget != null and min_budget != ''">min_budget = #{min_budget},</if>
+   		 <if test="max_budget != null and max_budget != ''">max_budget = #{max_budget},</if>
+         <if test="score_budget != null and score_budget != ''">score_budget = #{score_budget},</if>
+    	</trim>
     <where>
         <if test="id != null and id != ''">
             and id = #{id}
