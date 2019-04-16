@@ -39,7 +39,8 @@ public class User {
 	
 	//是否通过审核(1.通过，0.未通过)
 	private Integer audit;
-	
+	//注册渠道(直接注册0账户升级1)
+	private Integer registtype;
 	// 分页数据（初始条数）
 	private Integer begin;
 
@@ -143,11 +144,12 @@ public class User {
 		}
 	}
 
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", uuid=" + uuid + ", openid=" + openid + ", QQuid=" + QQuid + ", num=" + num
 				+ ", password=" + password + ", name=" + name + ", balance=" + balance + ", level=" + level
-				+ ", license=" + license + ", audit=" + audit + ", begin=" + begin + "]";
+				+ ", license=" + license + ", audit=" + audit + ", registtype=" + registtype + ", begin=" + begin + "]";
 	}
 
 	public User() {
@@ -155,13 +157,14 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
+
 	public User(Integer id, String uuid, String openid, String qQuid, String num, String password, String name,
-			Integer balance, Integer level, String license, Integer audit, Integer begin) {
+			Integer balance, Integer level, String license, Integer audit, Integer registtype, Integer begin) {
 		super();
 		this.id = id;
 		this.uuid = uuid;
 		this.openid = openid;
-		this.QQuid = qQuid;
+		QQuid = qQuid;
 		this.num = num;
 		this.password = password;
 		this.name = name;
@@ -169,11 +172,16 @@ public class User {
 		this.level = level;
 		this.license = license;
 		this.audit = audit;
-		if(begin != null){
-			this.begin = ((begin-1)*20)+1;
-		}else{
-			this.begin = begin;
-		}
+		this.registtype = registtype;
+		this.begin = begin;
+	}
+
+	public Integer getRegisttype() {
+		return registtype;
+	}
+
+	public void setRegisttype(Integer registtype) {
+		this.registtype = registtype;
 	}
 	
 	

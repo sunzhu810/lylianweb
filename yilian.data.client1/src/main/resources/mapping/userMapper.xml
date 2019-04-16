@@ -29,6 +29,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="audit != null and audit != ''">
 				and audit = #{audit}
 			</if>
+			<if test="registtype != null and registtype != ''">
+				and registtype = #{registtype}
+			</if>
 		</where>
 	</sql>
 
@@ -36,14 +39,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 分页拼接 -->
 	<sql id="limit_cond">
 		<if test="begin != null and begin != ''">
-			limit #{begin},20
+			limit #{begin},12
 		</if>
 	</sql>
 
 	<insert id="userInsert" parameterType="com.yijie.data.client.model.User">
 		insert into
-		yl_user(uuid,num,password,name,balance,level,license,audit)
-		value(#{uuid},#{num},#{password},#{name},0,#{level},#{license},#{audit})
+		yl_user(uuid,num,password,name,balance,level,license,audit,registtype)
+		value(#{uuid},#{num},#{password},#{name},0,#{level},#{license},#{audit},#{registtype})
 	</insert>
 
 	<select id="userSelect" parameterType="com.yijie.data.client.model.User"
@@ -62,6 +65,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="level != null and level != ''">level = #{level},</if>
 			<if test="license != null and license != ''">license = #{license},</if>
 			<if test="audit != null and audit != ''">audit = #{audit},</if>
+			<if test="registtype != null and registtype != ''">registtype = #{registtype},</if>
 		</trim>
 		<include refid="user_where"></include>
 	</update>

@@ -25,13 +25,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </if>
         </where>
     </sql>
-    
+       
+<!-- 分页拼接 -->
+<sql id="limit_cond">
+    <if test="begin != null and begin != ''">
+            limit #{begin},12
+    </if>
+</sql>
     <insert id="scoreRuleInsert" parameterType="com.yijie.data.client.model.ScoreRule">
         insert into yl_score_rule(uuid,min_budget,max_budget,score_budget) value(#{uuid},#{min_budget},#{max_budget},#{score_budget})
     </insert>
     <select id="scoreRuleSelect" parameterType="com.yijie.data.client.model.ScoreRule" resultType="com.yijie.data.client.model.ScoreRule">
         select * from yl_score_rule
      <include refid="rule_where"></include>
+     <include refid="limit_cond"></include>
+
+     
+     
+     
+     
+     
     </select>
     
     <update id="scoreRuleUpdate" parameterType="com.yijie.data.client.model.ScoreRule">

@@ -9,6 +9,8 @@ public class ScoreRule {
     private double   min_budget;
     //积分预算
     private Integer score_budget;
+    //起始条数
+    private Integer begin;
 	public Integer getId() {
 		return id;
 	}
@@ -41,19 +43,26 @@ public class ScoreRule {
 	}
 	@Override
 	public String toString() {
-		return "ScoreRule [id=" + id + ", uuid=" + uuid + ", max_budget=" + max_budget + ", min_budget=" + min_budget
+		return "ScoreRule [begin=" + begin + ",id=" + id + ", uuid=" + uuid + ", max_budget=" + max_budget + ", min_budget=" + min_budget
 				+ ", score_budget=" + score_budget + "]";
 	}
-	public ScoreRule(Integer id, String uuid, double max_budget, double min_budget, Integer score_budget) {
+	public ScoreRule(Integer id,Integer begin, String uuid, double max_budget, double min_budget, Integer score_budget) {
 		super();
 		this.id = id;
 		this.uuid = uuid;
 		this.max_budget = max_budget;
 		this.min_budget = min_budget;
 		this.score_budget = score_budget;
+		this.begin = begin;
 	}
 	 public ScoreRule() {
 		super();
 		// TODO 自动生成的构造函数存根
+	}
+	public Integer getBegin() {
+		return begin;
+	}
+	public void setBegin(Integer begin) {
+		this.begin = begin;
 	}
 }

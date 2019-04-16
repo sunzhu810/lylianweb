@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 分页拼接 -->
 <sql id="limit_cond">
     <if test="begin != null and begin != ''">
-            limit #{begin},20
+            limit #{begin},12
     </if>
 </sql>
     

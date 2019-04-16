@@ -1,5 +1,6 @@
 package com.yijie.data.client.model;
 
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -59,7 +60,7 @@ public class Projects {
 	
 	// 分页数据（初始条数）
 	private Integer begin;
-
+private Date date;
 	public Integer getId() {
 		return id;
 	}
@@ -185,11 +186,9 @@ public class Projects {
 	}
 
 	public void setBegin(Integer begin) {
-		if(begin != null){
-			this.begin = ((begin-1)*20)+1;
-		}else{
+		
 			this.begin = begin;
-		}
+		
 	}
 
 	public Projects() {
@@ -202,12 +201,12 @@ public class Projects {
 		return "Projects [id=" + id + ", uuid=" + uuid + ", user_uuid=" + user_uuid + ", title=" + title + ", message="
 				+ message + ", area=" + area + ", days=" + days + ", min_budget=" + min_budget + ", max_budget="
 				+ max_budget + ", phone=" + phone + ", OICQ=" + OICQ + ", type=" + type + ", price=" + price
-				+ ", audit=" + audit + ",click_count=" + click_count + ",cha_count="+cha_count+",designs=" + designs + ", begin=" + begin + "]";
+				+ ", audit=" + audit+ ", date=" + date + ",click_count=" + click_count + ",cha_count="+cha_count+",designs=" + designs + ", begin=" + begin + "]";
 	}
 
 	public Projects(Integer id, String uuid, String user_uuid, String title, String message, String area, Integer days,
 			Double min_budget, Double max_budget, String phone, String oICQ, String type, Integer price, Integer audit,Integer cha_count,
-			 Integer click_count,List<ProjectDesign> designs, Integer begin) {
+			Date date, Integer click_count,List<ProjectDesign> designs, Integer begin) {
 		super();
 		this.id = id;
 		this.uuid = uuid;
@@ -226,11 +225,8 @@ public class Projects {
 		this.click_count=click_count;
 		this.cha_count = cha_count;
 		this.designs = designs;
-		if(begin != null){
-			this.begin = ((begin-1)*20)+1;
-		}else{
-			this.begin = begin;
-		}
+		this.date =date;
+		this.begin = begin;
 	}
 
 	public Integer getClick_count() {
@@ -247,6 +243,14 @@ public class Projects {
 
 	public void setCha_count(Integer cha_count) {
 		this.cha_count = cha_count;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 }
